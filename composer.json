@@ -1,5 +1,5 @@
 {
-  "name": "Jakiboy/SQL-it",
+  "name": "jakiboy/sql-it",
   "type": "library",
   "description": "filter & fetch Array with SQL Query (PHP)",
   "keywords": ["php","helpers","array","sql","jakiboy"],
