@@ -7,7 +7,7 @@
  * @license MIT
  */
 
-namespace floatPHP;
+namespace floatPHP\SQLit;
 
 class SQLit extends \ArrayObject
 {
