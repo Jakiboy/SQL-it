@@ -8,5 +8,5 @@ composer require jakiboy/sql-it
 
 Use
 ```
-use floatPHP\Array;
+use floatPHP\Array\SQLit;
 ```
