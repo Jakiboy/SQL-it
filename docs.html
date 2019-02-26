@@ -3,7 +3,6 @@
 	<head>
 		<title>SQL-it | Fetch & Filter PHP Array with SQL</title>
 		<meta charset="utf-8">
-		<meta name="author" content="Jihad Sinnaour">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Fetch & filter PHP Arrays with SQL Query, Just like we do with database">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -11,114 +10,132 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic">
 		<link rel="stylesheet" href="assets/css/main.css">
-		<link rel="icon" type="image/png" href="assets/img/favicon.png">
 	</head>
-	<body class="is-preload">
-		<section id="header">
-			<div class="inner">
-				<img src="assets/img/sql-it.png" alt="SQL for Array">
-				<h1>Hey, I'm <strong>SQL</strong>-<strong>it</strong><br>
-				filter & fetch Array with SQL Query (PHP)</h1>
-				<p>"SELECT ID, name, age FROM $array WHERE ID = 1"</p>
-				<ul class="actions special">
-					<li><a href="#one" class="button scrolly">Discover</a></li>
-				</ul>
-			</div>
-		</section>
-		<section id="one" class="main">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-sm-12">
-<pre><code data-language="php">$array = [
-  [
-    'id'     => 1,
-    'name'   => 'Jhon doe',
-    'city'   => 'New York',
-    'Gender' => 'male'
-  ],
-  ...
-];
-</code></pre>
-					</div>
-					<div class="col-md-6 col-sm-12">
-						<header class="major">
-							<h2>We have a simple <strong>2D Array</strong></h2>
-						</header>
-						<p>In many cases we got an array of data <strong>without using a database</strong>,
-						A static Array or even non-parsed data as a Json response... Then we have to filter it!</p>
-						<p><code>2D : array( array(),array(),array()... );</code></p>
-					</div>
-				</div>
-			</div>
-		</section>
-			<section class="main">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-sm-12">
-						<header class="major">
-							<h2><strong>SQL-it</strong> Simple & Useful Class</h2>
-						</header>
-						<p>We need to filter this Array, that may contain big number of records...
-						by using SQL-it this can be done quickly!
-						& for <strong>Json</strong> response we can use <code>json_decode()</code> before.</p>
-						<p>Filtring Array is simple using few methods that looks like an <strong>ORM architecture</strong> with basic SQL statements.</p>
-						<p>L'ets fetch all results that have California as city, Selecting 'id','name' columns, order by 'id' ASC, limit 2 results.</p>
-					</div>
-					<div class="col-md-6 col-sm-12">
-<pre><code data-language="php">$orm = new SQLit($array);
-$result = $orm->select(['id','name'])
-->where([
-  [
-    'column' => 'city',
-    'value'  => 'California',
-    'link'   => 'LIKE'
-  ]
-])
--order('id')
--limit(2)
--query();
-
-// SELECT `id`, `name`, 
-// FROM $array WHERE `city` LIKE 'California'
-</code></pre>
-					</div>
-				</div>
-			</div>
-		</section>
+	<body>
 		<section class="main">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-12">
-<pre><code data-language="php">array (size=2)
-  0 => 
-    array (size=2)
-      'id' => int 3
-      'name' => string 'Jhon Parent'
-  1 => 
-    array (size=2)
-      'id' => int 6
-      'name' => string 'Alfred Pirtor'
-</code></pre>
-					</div>
-					<div class="col-md-6 col-sm-12">
-						<header class="major">
-							<h2><strong>Result</strong> : Filtred Array</h2>
-						</header>
-						<p>We got filtred array.</p>
-						<a href="docs.html" class="button text-center d-block">See Documentation</a>
+						<h2>Examples :</h2>
 					</div>
 				</div>
 			</div>
-		</section>
-			<section class="main">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-12">
-						<h2>Installation : using <strong>composer</strong></h2>
+						<h3>Simple Select Method</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select(['id','name'])->query();
+</code></pre>
 					</div>
 					<div class="col-md-6 col-sm-12">
-<pre><code data-language="php">require floatPHP\SQLit "1.0"
+						<h3>Select (*) example</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select('*')->query();
 </code></pre>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<h3>Simple Where Query</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select(['id','name','city'])
+->where(['city'=>'California'])
+->query();
+</code></pre>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+						<h3>Complete Where Query (Like)</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select(['gender','name'])
+  ->where([
+    [
+      'column' => 'gender',
+      'value'  => 'female',
+      'link'   => 'LIKE'
+    ]
+  ])
+  ->query();
+</code></pre>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<h3>Complete Where Query (>)</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select(['gender','name','id'])
+  ->where([
+    [
+      'column' => 'id',
+      'value'  => 8, // int|string
+      'link'   => '>'
+    ]
+  ])
+  ->query();
+</code></pre>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+					<h3>Order by `id` desc</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+	$result = $orm->select(['gender','name'])
+	  ->where([
+	    [
+	      'column' => 'name',
+	      'value'  => 'Jhon',
+	      'link'   => 'in' // Contains
+	    ]
+	  ])
+	  ->order('id','desc') // Default asc
+	  ->query();
+</code></pre>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<h3>Limit to 4 results</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select(['gender','name'])
+  ->where([
+    [
+      'column' => 'id',
+      'value'  => '!=', // Not equal
+      'link'   => 10
+    ]
+  ])
+  ->limit(4)
+  ->query();
+</code></pre>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+						<h3>Fetch Random data</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$result = $orm->select(['gender','name'])
+  ->where([
+    [
+      'column' => 'id',
+      'value'  => '!=', // Not equal
+      'link'   => 5
+    ]
+  ])
+  ->random()
+  ->query();
+</code></pre>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<h3>Select distinct</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$orm->select('name')->distinct('name');
+$result = $orm->query();
+</code></pre>
+						<h3>Separated Instance</h3>
+<pre><code data-language="php">$orm = new SQLit($array);
+$orm->select(['id','name']);
+$orm->where(['id'=>1]); // Like
+$result = $orm->query();
+</code></pre>
+<a href="https://jakiboy.github.io/SQL-it/" class="button text-center d-block">Installation</a>
 					</div>
 				</div>
 			</div>
