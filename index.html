@@ -65,7 +65,7 @@
 						<p>L'ets fetch all results that have California as city, Selecting 'id','name' columns, order by 'id' ASC, limit 2 results.</p>
 					</div>
 					<div class="col-md-6 col-sm-12">
-<pre><code data-language="php">use floatPHP\Array\SQLit;
+<pre><code data-language="php">use floatPHP\Arrays\SQLit;
 $orm = new SQLit($array);
 $result = $orm->select(['id','name'])
 ->where([
