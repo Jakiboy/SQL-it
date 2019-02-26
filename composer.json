@@ -1,0 +1,23 @@
+{
+  "name": "Jakiboy/SQL-it",
+  "type": "library",
+  "description": "filter & fetch Array with SQL Query (PHP)",
+  "keywords": ["php","helpers","array","sql","jakiboy"],
+  "homepage": "https://jakiboy.github.io/SQL-it/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jihad Sinnaour",
+      "email": "mail@jihadsinnaour.com",
+      "role": "Founder"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4" : {
+      "floatPHP\\SQLit\\" : "src/"
+    }
+  }
+}
