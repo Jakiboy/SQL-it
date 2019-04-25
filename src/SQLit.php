@@ -205,7 +205,7 @@ class SQLit extends \ArrayObject
 	protected function buildQuery()
 	{
 		if ( $this->isMultipleWhere($this->where) ) {
-
+			if ( !$this->db ) $this->db = [];
 			foreach ($this->db as $key => $row) {
 
 				if ( empty($row) ) return;
